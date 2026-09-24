@@ -3,18 +3,21 @@ const dotenv = require('dotenv');
 const connectDB = require('./db/config');
 const schoolRoutes = require('./routes/schoolRoutes');
 const studentRoutes = require('./routes/studentRoutes');
+const geoRoutes = require('./routes/geoRoutes');
 
 dotenv.config();
-
 
 connectDB();
 
 const app = express();
 
+
 app.use(express.json());
 
 app.use('/api/schools', schoolRoutes);
 app.use('/api/students', studentRoutes);
+app.use('/api/geo-data', geoRoutes);
+
 
 app.get('/', (req, res) => {
   res.send('API is running...');
